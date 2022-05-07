@@ -25,7 +25,7 @@
     </head>
     <body>
         <div class="tic80-container">
-            <canvas class="tic80-canvas" id="canvas" oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
+            <canvas class="tic80-canvas" id="tic80-canvas" oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
             <div class="tic80-play" id="tic80-play">
                 <img
                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAF9JREFUOE+d0jsOACAIA1B6/0NjHDB+UFtcnPpC0sLd3cwMAPqvPgQQQRU6ABW6Aiz0BX4QDdwgGdihMjCgvUZlB73y0gXzViQgGxkFvNb5BJhZpwATTFtQggtQCQbQAJ4FQA3PbK2EAAAAAElFTkSuQmCC"
@@ -39,7 +39,7 @@
         import startTic80 from './tic80.js'
 
         const initialize = () => {
-            const canvasSelector = '#canvas'
+            const canvasSelector = '#tic80-canvas'
             const canvasElement = document.querySelector(canvasSelector)
             const playElement = document.getElementById('tic80-play')
 
@@ -79,6 +79,7 @@
                 preRun: [
                     function (module) {
                         module.ENV.SDL_EMSCRIPTEN_KEYBOARD_ELEMENT = canvasSelector
+                        module.specialHTMLTargets["#canvas"] = canvasElement
                     }
                 ]
             }

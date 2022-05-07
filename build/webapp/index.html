@@ -26,7 +26,7 @@
     </head>
     <body>
         <div class="tic80-container">
-            <canvas class="tic80-canvas" id="canvas" oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
+            <canvas class="tic80-canvas" id="tic80-canvas" oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
         </div>
 
         <script type="module">
@@ -35,7 +35,7 @@
         navigator.serviceWorker.register('serviceworker.js')
 
         const initialize = () => {
-            const canvasSelector = '#canvas'
+            const canvasSelector = '#tic80-canvas'
             const canvasElement = document.querySelector(canvasSelector)
 
             const options = {
@@ -72,6 +72,7 @@
                 preRun: [
                     function (module) {
                         module.ENV.SDL_EMSCRIPTEN_KEYBOARD_ELEMENT = canvasSelector
+                        module.specialHTMLTargets["#canvas"] = canvasElement
                     }
                 ]
             }
